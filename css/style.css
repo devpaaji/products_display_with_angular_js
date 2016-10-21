@@ -1,4 +1,4 @@
-﻿
+
 body{
     background: rgb(236,100,75);
     font-family: Verdana;
@@ -48,4 +48,10 @@ img{
 .name, .category, .price, .quantity, .rating{
     margin: 5px, 5px;
     padding: 5px;
+}
+
+footer {
+    background-color: rgb(247, 202, 2);
+    color: white;
+    margin: 10px;
 }
