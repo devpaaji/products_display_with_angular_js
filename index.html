@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html ng-app="FusionApp">
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <link href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <script src="scripts/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>
+    <meta charset="utf-8">
+</head>
+<body ng-controller="HomeController">
+    <header class="navbar navbar-default bs-docs-nav" role="banner">
+        <div class="container">
+            <h4>MAD FUSION STYLE</h4>
+            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+                <!-- create a form class on nav bar set the form inline and right aligned-->
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <span ng-model="productCount">Product Count: {{productCount}}</span> |
+                        <span ng-model="apiCount">API Hits:{{apiCount}}</span>
+                        <p>
+                            <input type="text" ng-model="name" placeholder="Search by Name" />
+                        </p>
+                    </div>
+                </form>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="panel panel-primary col-sm-6 col-md-6">
+        <div class="panel-body"><p>Price Range Filter</p>
+            More Than: <select ng-model="showRange">
+                
+                <option ng-repeat="r in range"> {{r}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="panel panel-primary col-sm-6 col-md-6">
+        <div class="panel-body">
+            <p>Sort Products By:</p>
+            <input type="radio" name="column" value="price" ng-model="sort_name"  ng-change="sortProducts('price')" />Price
+            <input type="radio" name="column" value="rating" ng-model="sort_name" ng-change="sortProducts('rating')" />Rating
+            <input type="radio" name="column" value="category" ng-model="sort_name" ng-change="sortProducts('category')" />Category
+        </div>
+    </div>
+   
+  <div class="main" >
+      <div class="container" >
+            <div class="row">
+                <div class="col-sm-4 col-md-4" ng-repeat="product in show | filter: name | orderBy: SortColumn|filter:lesserThan ">
+                    <div class="col-sm-12 col-md-12 product-info">
+                        <div class="image">
+                            <img ng-src="{{ product.image }}">
+                        </div> 
+                            <div class="name ">Product: {{ product.name }}</div> 
+                            <div class="category">Category: {{ product.category }}</div> 
+                            <div class="rating">Rating: {{ product.rating }}</div> 
+                            <div class="price">Price: {{ product.price }}</div> 
+                            <div class="quantity">Quantity: {{ product.quantity }}</div> 
+                            <div class="description ">Description: {{ product.description }}</div>
+                    </div>
+                </div>
+             </div>
+        </div>
+  </div>
+    
+
+
+<!--controllers-->
+<script src="controllers/main.js"></script>
+ <!--services-->
+<script src="services/products.js"></script>
+
+</body>
+</html>
